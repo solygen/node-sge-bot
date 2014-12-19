@@ -3,9 +3,7 @@ node-sge-bot
 
 ``eintracht frankfurt news bot``
 
-![image](https://david-dm.org/solygen/node-sge-bot
-.png)
-
+[![Dependency Status](https://david-dm.org/solygen/node-sge-bot.svg?style=flat)](https://david-dm.org/solygen/node-sge-bot)
 ##plugins
 
 ```
