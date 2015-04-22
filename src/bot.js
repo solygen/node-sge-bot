@@ -3,46 +3,51 @@
 
     'use strict';
 
-    var Horseman = require('node-horseman'),
+    var /*Horseman = require('node-horseman'),*/
         FeedParser = require('feedparser'),
         deferred = require('deferred'),
         request = require('request'),
         scraperjs = require('scraperjs'),
-        _ = require('lodash');
+        _ = require('lodash'),
+        debug = {
+            app: require('debug')('app'),
+            scrape: require('debug')('scrape'),
+            reporting: require('debug')('reporting')
+        };
 
-    // alias
     var log = console.log;
 
-    function scrape(config) {
-        // load source config and load data
-        function load(config) {
-            var horseman = new Horseman({
-                timeout: 5000,
-                loadImages: false,
-                webSecurity: false
-            });
-            var data = horseman
-                        .on('consoleMessage', function (msg) {
-                            log('   ', '!!consoleMessage');
-                            log('   ', msg);
-                        })
-                        .on('error', function () {
-                            log('   ', '!!error');
-                            log('   ', arguments);
-                        })
-                        .open(config.url)
-                        .evaluate(config.extract);
-            horseman.close();
-            return data;
-        }
+    // alias
+    // function scrape(config) {
+    //     // load source config and load data
+    //     function load(config) {
+    //         var horseman = new Horseman({
+    //             timeout: 5000,
+    //             loadImages: false,
+    //             webSecurity: false
+    //         });
+    //         var data = horseman
+    //                     .on('consoleMessage', function (msg) {
+    //                         debug.scrape('   ', '!!consoleMessage');
+    //                         debug.scrape('   ', msg);
+    //                     })
+    //                     .on('error', function () {
+    //                         debug.scrape('   ', '!!error');
+    //                         debug.scrape('   ', arguments);
+    //                     })
+    //                     .open(config.url)
+    //                     .evaluate(config.extract);
+    //         horseman.close();
+    //         return data;
+    //     }
 
-        // return sources data
-        try {
-            return load(config).reverse();
-        } catch (e) {
-            console.log(e);
-        }
-    }
+    //     // return sources data
+    //     try {
+    //         return load(config).reverse();
+    //     } catch (e) {
+    //         debug.scrape(e);
+    //     }
+    // }
 
     // feed reader
     function getTweets(config) {
@@ -124,7 +129,7 @@
 
         // call reporter plugins
         report: function (config, data) {
-            log('reporting: ' + config.name + ' (' + data.length + ')');
+            debug.reporting(config.name + ' (' + data.length + ')');
             _.each(data, function (obj) {
                 var recent = !bot.storage.get(obj.source, obj.title);
                 // update cache
@@ -144,6 +149,7 @@
 
         // call feed and scraper plugins
         process: function () {
+            debug.app('start');
             // feeds: async
             _.each(bot.plugins.feeds, function (config) {
                 parseRSS(config)
@@ -153,6 +159,7 @@
 
             // scrapers: sync
             _.each(bot.plugins.scrapers, function (config) {
+                // TODO: https://github.com/rc0x03/node-osmosis
                 // scrape(config)
                 // .then(clean)
                 // .report(config, scrape(config));

@@ -4,7 +4,10 @@
 
     var lib = require('../../lib/twitter'),
         bitly = require('../../lib/bitly'),
-        colors = require('colors');
+        colors = require('colors'),
+        debug = {
+            twitter: require('debug')('twitter')
+        };
 
     var post = function (data, err, response) {
         var url, shorturl, content;
@@ -26,7 +29,7 @@
                   '#' + data.source + ' ' + url + '\u000a';
 
         // log
-        console.log(('TWITTER: ' + data.title).blue);
+        debug.twitter(('TWITTER: ' + data.title).blue);
 
         // tweet
         lib.post(content);
@@ -37,9 +40,9 @@
         if (data.id && data.type && data.type === 'tweet') {
             lib.retweet(data.id)
                 .then(function () {
-                    console.log(('TWITTER: retweeted ' + data.title).blue);
+                    debug.twitter(('TWITTER: retweeted ' + data.title).blue);
                 }, function (err) {
-                    console.log(('TWITTER: retweet:error ' + err.allErrors).red);
+                    debug.twitter(('TWITTER: retweet:error ' + err.allErrors).red);
                 });
         } else {
             bitly.shorten(data.url, post.bind(this, data));

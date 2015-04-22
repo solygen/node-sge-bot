@@ -3,16 +3,17 @@
     'use strict';
 
     var _ = require('lodash'),
-        colors = require('colors');
+        colors = require('colors'),
+        debug = {
+            detail: require('debug')('console:detail')
+        };
 
     module.exports = function (data) {
         // output
-        console.log();
-        console.log((data.title.trim()).underline.green);
-        console.log(data.content.trim());
-        console.log((data.url).blue);
-        console.log('');
-        console.log();
+        debug.detail('  ' + (data.title.trim()).underline.green);
+        debug.detail(data.content.trim());
+        debug.detail((data.url));
+        debug.detail('');
     };
 
 }());
