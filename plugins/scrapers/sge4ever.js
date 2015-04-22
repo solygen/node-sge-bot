@@ -7,7 +7,7 @@
         name: 'sge4ever',
         icon: '',
         hashtags: ['sge4ever'],
-        extract: function ($)  {
+        extract: function ($) {
 
             console.log(arguments);
             var list = $('.post'),

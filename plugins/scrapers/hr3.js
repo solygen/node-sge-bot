@@ -7,7 +7,7 @@
         name: 'hr3',
         icon: '',
         hashtags: ['hr3'],
-        extract: function ($)  {
+        extract: function ($) {
             var blacklist = [
                     'lilien',
                     'darmstadt',
@@ -30,7 +30,7 @@
 
                 // filter blacklist items
                 var pass = !!title;
-                $.each(blacklist, function (index, word)  {
+                $.each(blacklist, function (index, word) {
                     if (pass) {
                         pass = title.toLowerCase().indexOf(word) === -1 &&
                                content.toLowerCase().indexOf(word) === -1;

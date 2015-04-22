@@ -7,7 +7,7 @@
         name: 'transfermarkt',
         icon: '',
         hashtags: ['transfermarkt'],
-        extract: function ()  {
+        extract: function () {
             var list = $('.news-content'),
                 sections = [],
                 blacklist = [
@@ -27,7 +27,7 @@
 
                 // filter blacklist items
                 var pass = !!title;
-                $.each(blacklist, function (index, word)  {
+                $.each(blacklist, function (index, word) {
                     if (pass) {
                         pass = title.toLowerCase().indexOf(word) === -1;
                     }

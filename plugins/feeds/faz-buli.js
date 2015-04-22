@@ -4,6 +4,10 @@
 
     var _ = require('lodash');
 
+    function filter (pass, word) {
+        if (pass) pass = title.toLowerCase().indexOf(word) > -1;
+    }
+
     module.exports =  {
         url: 'http://www.faz.net/rss/aktuell/sport/fussball/',
         name: 'faz:bundesliga',
@@ -23,11 +27,7 @@
                     title = item.title,
                     content = item.description;
 
-                _.each(whitelist, function (word)  {
-                    if (!pass) {
-                        pass = title.toLowerCase().indexOf(word) > -1;
-                    }
-                });
+                _.each(whitelist, _.partial(filter, pass));
 
                 if (pass) {
                     data.push({
