@@ -15,7 +15,7 @@
     "grunt-notify": "^0.4.1",
     "he": "0.5.0",
     "jquery": "2.1",
-    "lodash": "~3.6",
+    "lodash": "~3.7",
     "node-schedule": "0.2.6",
     "request": "2.55.0",
     "scraperjs": "0.3.3",
