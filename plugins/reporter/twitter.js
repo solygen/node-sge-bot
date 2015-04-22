@@ -14,10 +14,10 @@
 
         // use bitly shortened url when available
         if (err) {
-            console.log(JSON.stringify(err));
+            debug.twitter(JSON.stringify(err));
         } else {
-            console.log(JSON.stringify(data));
-            console.log(shorturl);
+            debug.twitter(JSON.stringify(data));
+            debug.twitter(shorturl);
             shorturl = response.data.url;
         }
         url = shorturl || data.url;

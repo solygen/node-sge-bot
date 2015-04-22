@@ -9,7 +9,6 @@
         hashtags: ['sge4ever'],
         extract: function ($) {
 
-            console.log(arguments);
             var list = $('.post'),
                 sections = [];
 

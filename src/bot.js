@@ -15,8 +15,6 @@
             reporting: require('debug')('reporting')
         };
 
-    var log = console.log;
-
     // alias
     // function scrape(config) {
     //     // load source config and load data
