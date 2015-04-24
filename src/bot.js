@@ -156,6 +156,7 @@
             // scrapers: sync
             _.each(bot.plugins.scrapers, function (config) {
                 // TODO: https://github.com/rc0x03/node-osmosis
+                // TODO: https://github.com/lapwinglabs/x-ray
                 // scrape(config)
                 // .then(clean)
                 // .report(config, scrape(config));
