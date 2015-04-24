@@ -7,6 +7,7 @@
         deferred = require('deferred'),
         request = require('request'),
         _ = require('lodash'),
+        osmosis = require('osmosis'),
         debug = {
             app: require('debug')('app'),
             scrape: require('debug')('scrape'),
@@ -14,36 +15,16 @@
         };
 
     // alias
-    // function scrape(config) {
-    //     // load source config and load data
-    //     function load(config) {
-    //         var horseman = new Horseman({
-    //             timeout: 5000,
-    //             loadImages: false,
-    //             webSecurity: false
-    //         });
-    //         var data = horseman
-    //                     .on('consoleMessage', function (msg) {
-    //                         debug.scrape('   ', '!!consoleMessage');
-    //                         debug.scrape('   ', msg);
-    //                     })
-    //                     .on('error', function () {
-    //                         debug.scrape('   ', '!!error');
-    //                         debug.scrape('   ', arguments);
-    //                     })
-    //                     .open(config.url)
-    //                     .evaluate(config.extract);
-    //         horseman.close();
-    //         return data;
-    //     }
+    function scrape(config) {
+        // load source config and load data
+        var def = deferred();
+        osmosis
+        .get(config.url)
+        .set(config.selector)
+        .data(_.partial(config.extract, def));
 
-    //     // return sources data
-    //     try {
-    //         return load(config).reverse();
-    //     } catch (e) {
-    //         debug.scrape(e);
-    //     }
-    // }
+        return def.promise;
+    }
 
     // feed reader
     function getTweets(config) {
@@ -155,11 +136,10 @@
 
             // scrapers: sync
             _.each(bot.plugins.scrapers, function (config) {
-                // TODO: https://github.com/rc0x03/node-osmosis
                 // TODO: https://github.com/lapwinglabs/x-ray
-                // scrape(config)
-                // .then(clean)
-                // .report(config, scrape(config));
+                scrape(config)
+                .then(clean)
+                .then(bot.report.bind(this, config));
             });
 
             // scrapers: tweets

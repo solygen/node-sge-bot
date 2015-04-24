@@ -6,9 +6,19 @@
         url: 'http://www.hr-online.de/website/rubriken/sport/index.jsp?rubrik=38120&key=standard_document_41431325',
         name: 'hr3',
         icon: '',
+        selector: {
+            'titles[]': '.teaser h2',
+            'contents[]': '.teaser .absatzcontent.centered'
+        },
         hashtags: ['hr3'],
-        extract: function ($) {
-            var blacklist = [
+        extract: function (def, data) {
+
+            var titles = data.titles,
+                contents = data.contents;
+
+            //console.log(titles);
+            var list = [],
+                blacklist = [
                     'lilien',
                     'darmstadt',
                     'fsv',
@@ -16,29 +26,24 @@
                     'bornheim'
                 ];
 
-            // remove date headers from teaserboxes
-            $('.slang_box_large').remove();
+            titles.forEach(function (h2, index) {
 
-            var list = $('.teaserbox'),
-                sections = [];
-
-            $.each(list, function (index, section) {
-                section = $(section);
                 // normalize title
-                var title = section.find('h2').text().replace('+++', '').replace('+++', '').trim(),
-                    content = $(section.find('.absatzcontent.centered')[0]).text();
+                var title = h2.replace('+++', '').replace('+++', '').trim(),
+                    content = contents[index];
 
                 // filter blacklist items
                 var pass = !!title;
-                $.each(blacklist, function (index, word) {
+                blacklist.forEach(function (word) {
                     if (pass) {
                         pass = title.toLowerCase().indexOf(word) === -1 &&
                                content.toLowerCase().indexOf(word) === -1;
+
                     }
                 });
 
                 if (pass) {
-                    sections.push({
+                    list.push({
                         title: title,
                         content: content,
                         short: title.slice(0,140),
@@ -47,7 +52,8 @@
                     });
                 }
             });
-            return sections;
+
+            def.resolve(list);
         }
     };
 

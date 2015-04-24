@@ -14,6 +14,7 @@
     "grunt-notify": "^0.4.1",
     "jquery": "2.1",
     "lodash": "~3.7",
+    "osmosis": "0.0.6",
     "request": "2.55.0",
     "twit": "1.1.20"
   },
