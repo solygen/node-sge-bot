@@ -9,7 +9,6 @@
             var stream = this, item;
             // add to data (collector)
             while ( (item = stream.read()) ) {
-
                 data.push({
                     title: item.title,
                     content: item.description,

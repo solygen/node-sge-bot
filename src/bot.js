@@ -3,11 +3,9 @@
 
     'use strict';
 
-    var /*Horseman = require('node-horseman'),*/
-        FeedParser = require('feedparser'),
+    var FeedParser = require('feedparser'),
         deferred = require('deferred'),
         request = require('request'),
-        scraperjs = require('scraperjs'),
         _ = require('lodash'),
         debug = {
             app: require('debug')('app'),
@@ -105,7 +103,7 @@
     }
 
     // remove undefined, trailing whitespace
-    // TODO: unicode
+    // TODO: unicode / npm he?
     function clean (list) {
         _.each(list, function (item) {
             var keys = Object.keys(item);

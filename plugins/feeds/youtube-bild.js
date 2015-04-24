@@ -9,7 +9,6 @@
             var stream = this, item;
             // add to data (collector)
             while ( (item = stream.read()) ) {
-
                 if (item.title.indexOf('Eintracht Frankfurt') > -1) {
                     data.push({
                         title: item.title,

@@ -4,7 +4,6 @@
 
     var lib = require('../../lib/twitter'),
         bitly = require('../../lib/bitly'),
-        colors = require('colors'),
         debug = {
             twitter: require('debug')('twitter')
         };
@@ -29,7 +28,7 @@
                   '#' + data.source + ' ' + url + '\u000a';
 
         // log
-        debug.twitter(('TWITTER: ' + data.title).blue);
+        debug.twitter('TWITTER: ' + data.title);
 
         // tweet
         lib.post(content);
@@ -40,9 +39,9 @@
         if (data.id && data.type && data.type === 'tweet') {
             lib.retweet(data.id)
                 .then(function () {
-                    debug.twitter(('TWITTER: retweeted ' + data.title).blue);
+                    debug.twitter('TWITTER: retweeted ' + data.title);
                 }, function (err) {
-                    debug.twitter(('TWITTER: retweet:error ' + err.allErrors).red);
+                    debug.twitter('TWITTER: retweet:error ' + err.allErrors);
                 });
         } else {
             bitly.shorten(data.url, post.bind(this, data));

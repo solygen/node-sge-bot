@@ -9,11 +9,9 @@
         name: 'faz:rhein-main',
         extract: function (data) {
             var stream = this, item;
-
             // add to data (collector)
             while ( (item = stream.read()) ) {
                 var title = item.title;
-
                 if (title.indexOf('Eintracht Frankfurt:') === 0) {
                     data.push({
                         title: title,

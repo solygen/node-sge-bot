@@ -10,7 +10,6 @@
             // add to data (collector)
             while ( (item = stream.read()) ) {
                 // TODO: umlauts
-
                 if (item.title.indexOf('Tippspiel') === -1) {
                     //console.log(he.decode(item.description));
                     data.push({

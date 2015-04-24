@@ -9,7 +9,6 @@
         name: 'kicker',
         extract: function (data) {
             var stream = this, item;
-
             // add to data (collector)
             while ( (item = stream.read()) ) {
                 // ingnore matchday news
