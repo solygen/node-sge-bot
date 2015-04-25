@@ -3,15 +3,15 @@
     'use strict';
 
     module.exports =  {
-        url: 'http://www.hr-online.de/website/rubriken/sport/index.jsp?rubrik=7428',
-        name: 'hr3',
+        url: 'http://www.bundesliga.de/de/clubs/eintracht-frankfurt/',
+        name: 'buli',
         icon: '',
         selector: {
-            'titles[]': '.teaser#Weiss h1>a',
-            'links[]': '.teaser#Weiss h1>a@href',
-            'contents[]': '.teaser#Weiss .teasercontent'
+            'titles[]': '.news-content h3',
+            'links[]': '.list-entry>a@href',
+            'contents[]': '.news-content p'
         },
-        hashtags: ['hr3'],
+        hashtags: ['buli'],
         extract: function (def, data) {
             var titles = data.titles,
                 links = data.links,
@@ -23,8 +23,8 @@
                     title: title,
                     content: contents[index],
                     short: title.slice(0,140),
-                    source: 'hr3',
-                    url: 'http://www.hr-online.de' + links[index]
+                    source: 'buli',
+                    url: 'http://www.bundesliga.de' + links[index]
                 });
             });
 

@@ -1,7 +1,7 @@
 {
   "name": "node-sge-bot",
   "version": "0.0.1",
-  "description": "eintracht frankfurt news bot",
+  "description": "eintracht frankfurt twitter news bot",
   "main": "src/bot",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
