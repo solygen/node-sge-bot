@@ -5,6 +5,10 @@ node-sge-bot
 
 [![Dependency Status](https://david-dm.org/solygen/node-sge-bot.svg?style=flat)](https://david-dm.org/solygen/node-sge-bot)
 
+##demo / twitter account
+[twitter.com/sge_bot](https://twitter.com/sge_bot)
+
+
 ## twitter avatar
 Metal House – Terebi Robot
 
