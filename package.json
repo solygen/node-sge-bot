@@ -38,7 +38,7 @@
     "cli"
   ],
   "author": "Frank Paczynski <frank@solygen.de> (https://github.com/solygen)",
-  "license": "MIT",
+  "license": "Unlicense",
   "bugs": {
     "url": "https://github.com/solygen/node-sge-bot/issues"
   },
