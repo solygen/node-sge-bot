@@ -21,8 +21,8 @@
                 list = [];
 
             images.forEach(function (image, index) {
-
                 if (image.indexOf('/24.png') === -1) return;
+
                 list.push({
                     title: titles[index],
                     content: contents[index],

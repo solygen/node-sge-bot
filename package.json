@@ -1,6 +1,6 @@
 {
   "name": "node-sge-bot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "eintracht frankfurt twitter news bot",
   "main": "bin/bot",
   "scripts": {

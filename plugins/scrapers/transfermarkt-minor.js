@@ -10,7 +10,7 @@
             'titles[]': '.news-sixpack-alt h2>a',
             'images[]': '.news-sixpack-alt .minifoto@src',
             'links[]': '.news-sixpack-alt>a@href',
-            'contents[]': '.news-content p'
+            'contents[]': '.news-sixpack-alt h3'
         },
         hashtags: ['tm'],
         extract: function (def, data) {
@@ -21,8 +21,8 @@
                 list = [];
 
             images.forEach(function (image, index) {
-
                 if (image.indexOf('/24.png') === -1) return;
+
                 list.push({
                     title: titles[index],
                     content: contents[index],
