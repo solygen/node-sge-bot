@@ -8,6 +8,7 @@
         request = require('request'),
         _ = require('lodash'),
         osmosis = require('osmosis'),
+        xray = require('x-ray'),
         debug = {
             app: require('debug')('app'),
             scrape: require('debug')('scrape'),
@@ -18,6 +19,10 @@
     function scrape(config) {
         // load source config and load data
         var def = deferred();
+        // xray(config.url)
+        // .select(config.selector)
+        // .run(_.partial(config.extract, def));
+
         osmosis
         .get(config.url)
         .set(config.selector)
