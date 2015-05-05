@@ -14,7 +14,7 @@
                     content: item.description.replace(/<(.*?)>/ig, ''),
                     source: 'fr',
                     short: item.summary.replace(/<(.*?)>/ig, '').slice(0,140),
-                    url: item.guid || item.url
+                    url: item.link
                 });
             }
         }
