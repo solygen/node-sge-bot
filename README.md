@@ -3,8 +3,12 @@ node-sge-bot
 
 ``eintracht frankfurt news bot``
 
-[![Dependency Status](https://david-dm.org/solygen/node-sge-bot.svg?style=flat)](https://david-dm.org/solygen/node-sge-bot)
+##badges
 
+[![npm](https://img.shields.io/npm/dm/node-sge-bot.svg)](https://www.npmjs.com/package/node-sge-bot)   
+[![David](https://img.shields.io/david/solygen/node-sge-bot.svg?style=flat-square)](https://david-dm.org/solygen/node-sge-bot)  
+[![David](https://img.shields.io/david/dev/solygen/node-sge-bot.svg?style=flat-square)](https://david-dm.org/solygen/node-sge-bot#info=devDependencies&view=table)  
+ 
 ##demo / twitter account
 [twitter.com/sge_bot](https://twitter.com/sge_bot)
 
