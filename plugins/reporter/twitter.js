@@ -25,7 +25,7 @@
         content = // title
                   data.title + '\u000a' +
                   // hashtags + link
-                  '#' + data.source + ' ' + url + '\u000a';
+                  '#sge'  +  ' ' + '#' + data.source + ' '  + url + '\u000a';
 
         // log
         debug.twitter('TWITTER: ' + data.title);
