@@ -9,10 +9,10 @@
 
     module.exports = function (data) {
         // output
-        debug.detail('  ' + data.title.trim());
-        debug.detail(data.content.trim());
-        debug.detail(data.url);
-        debug.detail('');
+        console.log(data.title.trim());
+        console.log(data.url.trim());
+        //console.log(data.content.trim());
+        console.log('================');
     };
 
 }());
