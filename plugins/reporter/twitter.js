@@ -34,17 +34,20 @@
         lib.post(content);
     };
 
-    module.exports = function (data) {
-        // pipe url part through shortener
-        if (data.id && data.type && data.type === 'tweet') {
-            lib.retweet(data.id)
-                .then(function () {
-                    debug.twitter('TWITTER: retweeted ' + data.title);
-                }, function (err) {
-                    debug.twitter('TWITTER: retweet:error ' + err.allErrors);
-                });
-        } else {
-            bitly.shorten(data.url, post.bind(this, data));
+    module.exports = {
+        id: 'twitter',
+        write: function (data) {
+            // pipe url part through shortener
+            if (data.id && data.type && data.type === 'tweet') {
+                lib.retweet(data.id)
+                    .then(function () {
+                        debug.twitter('TWITTER: retweeted ' + data.title);
+                    }, function (err) {
+                        debug.twitter('TWITTER: retweet:error ' + err.allErrors);
+                    });
+            } else {
+                bitly.shorten(data.url, post.bind(this, data));
+            }
         }
     };
 }());

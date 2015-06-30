@@ -116,8 +116,10 @@
                 bot.storage.set(obj.source, obj.title);
                 if (recent) {
                     _.each(bot.plugins.reporter, function (rep) {
+                        // process only for enabled reporters
+                        if (bot.settings.reporters.indexOf(rep.id) < 0) return;
                         try {
-                            rep(obj);
+                            rep.write(obj);
                         } catch (e) {
                             console.log(obj);
                             console.log(e);
@@ -152,7 +154,9 @@
             });
 
             // clean up
-            // bot.storage.clean();
+            if (!!bot.settings.cleanup) {
+                bot.storage.clean();
+            }
         }
     };
 
