@@ -101,6 +101,9 @@
         // simple file based key value storage
         storage: require('../lib/storage').init(),
 
+        // settings
+        settings: require('../lib/settings'),
+
         // simple plugin system: load sources and reporters
         plugins: require('../lib/loader'),
 

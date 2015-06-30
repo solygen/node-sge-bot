@@ -1,0 +1,6 @@
+{
+    "cleanup": false,
+    "reporters": [
+        "console"
+    ]
+}
