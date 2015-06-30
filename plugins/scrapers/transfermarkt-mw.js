@@ -22,16 +22,9 @@
                 trends = data.trends,
                 list = [];
 
-
             titles.forEach(function (title, index) {
-                var trend = trends[index];
-
-                if (trend.indexOf('grey') >= 0) return;
-
-                trend = trend.indexOf('green') >= 0 ? '+' : '-';
-
                 list.push({
-                    title: title + ': ' + contents[index] + ' (' + trend + ')',
+                    title: title + ': ' + contents[index],
                     content: contents[index],
                     short: title.slice(0,140),
                     source: 'tmmw',
