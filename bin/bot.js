@@ -19,9 +19,9 @@
         // load source config and load data
         var def = deferred();
         osmosis
-        .get(config.url)
-        .set(config.selector)
-        .data(_.partial(config.extract, def));
+          .get(config.url)
+          .set(config.selector)
+          .data(_.partial(config.extract, def));
 
         return def.promise;
     }
