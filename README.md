@@ -3,13 +3,13 @@ node-sge-bot
 
 ``eintracht frankfurt news bot``
 
-##badges
+## badges
 
 [![npm](https://img.shields.io/npm/dm/node-sge-bot.svg)](https://www.npmjs.com/package/node-sge-bot)   
 [![David](https://img.shields.io/david/solygen/node-sge-bot.svg?style=flat-square)](https://david-dm.org/solygen/node-sge-bot)  
 [![David](https://img.shields.io/david/dev/solygen/node-sge-bot.svg?style=flat-square)](https://david-dm.org/solygen/node-sge-bot#info=devDependencies&view=table)  
  
-##demo / twitter account
+## demo / twitter account
 [twitter.com/sge_bot](https://twitter.com/sge_bot)
 
 
@@ -25,19 +25,40 @@ http://commons.wikimedia.org/wiki/File:Metal_House_%E2%80%93_Terebi_Robot_(%E3%8
 
 
 
-##source plugins
+## source plugins
 
 ### feeds
 ```
-blog-gfaz-bulifaz-rheinmainfnpfrkickeryoutube-bildyoutube-bloggyoutube-efyoutube-MrJoshuah96LP2
+blog-g
+faz-buli
+faz-rheinmain
+fnp
+fr
+kicker
+youtube-bild
+youtube-blogg
+youtube-ef
+youtube-MrJoshuah96LP2
 ```
 ### twitter
 ```
-bambabundesligaeintrachtfazrtltmwiesbadener-kurierzambrano
+bamba
+bundesliga
+eintracht
+faz
+rtl
+tm
+wiesbadener-kurier
+zambrano
 ```
 
 ### websites
 ```
-bundesligahr3-tickerhr3sge4evertransfermarkt-minortransfermarkt
+bundesliga
+hr3-ticker
+hr3
+sge4ever
+transfermarkt-minor
+transfermarkt
 ```
 
