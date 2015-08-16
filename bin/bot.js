@@ -8,6 +8,7 @@
         request = require('request'),
         _ = require('lodash'),
         osmosis = require('osmosis'),
+        now = Date.now(),
         debug = {
             app: require('debug')('app'),
             scrape: require('debug')('scrape'),
@@ -24,6 +25,22 @@
           .data(_.partial(config.extract, def));
 
         return def.promise;
+    }
+
+    function onlyNewsworthy (list) {
+        //console.error(config.id, list.length);
+        return _.filter(list, isNewsworthy)
+    }
+
+    // check of source is recent
+    function isNewsworthy (item) {
+        var created = new Date(item.created);
+        // invalid date
+        if (!created) return true;
+        // last 3 hours
+        // if ((now - created.getTime()) > (1000 * 60 * 60 * 3))
+        //     console.error(item.config, item.title, item.created);
+        return (now - created.getTime()) <= (1000 * 60 * 60 * 3)
     }
 
     // feed reader
@@ -46,14 +63,18 @@
                             content: '',
                             url: '',
                             type: 'tweet',
-                            source: config.name
+                            created: data.created_at,
+                            source: config.name,
+                            config: config.id
                         };
                     });
                 },
                 function (err, response) {
+                    console.log(config.id);
                     console.log(err);
                 }
-            ).then(config.filter || fallback);
+            )
+            .then(config.filter || fallback);
     }
 
     // feed reader
@@ -150,7 +171,9 @@
             // scrapers: tweets
             _.each(bot.plugins.twitter, function (config) {
                 getTweets(config)
+                .then(onlyNewsworthy)
                 .then(bot.report.bind(this, config));
+
             });
 
             // clean up

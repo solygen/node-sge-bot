@@ -28,7 +28,7 @@
                     content: contents[index],
                     short: title.slice(0,140),
                     source: 'tmmw',
-                    url: 'http://www.transfermarkt.de' + links[index]
+                    url: 'http://www.transfermarkt.de' + (links[index].replace('/profil/', '/marktwertverlauf/'))
                 });
             });
 
