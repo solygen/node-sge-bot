@@ -3,22 +3,25 @@
     'use strict';
 
     module.exports =  {
-        url: 'http://www.hr-online.de/website/rubriken/sport/index.jsp?rubrik=7428',
+        url: 'http://hessenschau.de/sport/fussball/eintracht-frankfurt/index.html   ',
         name: 'hr3',
         icon: '',
         selector: {
-            'titles[]': '.teaser#Weiss h1>a',
-            'links[]': '.teaser#Weiss h1>a@href',
-            'contents[]': '.teaser#Weiss .teasercontent'
+            'titles[]': 'article a.teaser__headlineLink .text__headline',
+            'links[]': 'article a.teaser__headlineLink@href'
         },
         hashtags: ['hr3'],
         extract: function (def, data) {
             var titles = data.titles,
                 links = data.links,
-                contents = data.contents,
+                contents = '',
                 list = [];
 
             titles.forEach(function (title, index) {
+
+                // ignore ticker
+                if (index === 0 || index >= 5) return;
+
                 list.push({
                     title: title,
                     content: contents[index],

@@ -3,14 +3,14 @@
     'use strict';
 
     module.exports =  {
-        url: 'http://www.hr-online.de/website/rubriken/sport/index.jsp?rubrik=38120&key=standard_document_41431325',
+        url: 'http://hessenschau.de/sport/fussball/aktuelles-von-eintracht-sv98--fsv,bundesliga-ticker-100.html',
         name: 'hr3-ticker',
         icon: '',
         selector: {
-            'titles[]': '.teaser h2',
-            'contents[]': '.teaser .absatzcontent.centered'
+            'titles[]': '.copytext__headline[itemprop="headline"]',
+            'contents[]': '.copytext__text'
         },
-        hashtags: ['hr3-ticker'],
+        hashtags: ['hr3'],
         extract: function (def, data) {
 
             var titles = data.titles,
@@ -26,7 +26,19 @@
                     'bornheim'
                 ];
 
+
+            titles = titles.filter(function (h2) {
+                return h2.indexOf('+++') >= 0;
+            });
+
+            contents = contents.filter(function (h2) {
+                return h2.length >= 50;
+            });
+
             titles.forEach(function (h2, index) {
+
+                // limit to 5 latest
+                if (index >= 5) return;
 
                 // normalize title
                 var title = h2.replace('+++', '').replace('+++', '').trim(),
@@ -34,6 +46,7 @@
 
                 // filter blacklist items
                 var pass = !!title;
+
                 blacklist.forEach(function (word) {
                     if (pass) {
                         pass = title.toLowerCase().indexOf(word) === -1 &&
@@ -47,9 +60,11 @@
                         title: title,
                         content: content,
                         short: title.slice(0,140),
-                        source: 'hr3',
-                        url: 'http://www.hr-online.de/website/rubriken/sport/index.jsp?rubrik=38120&key=standard_document_41431325'
+                        source: 'hr3ticker',
+                        url: 'http://hessenschau.de/sport/fussball/aktuelles-von-eintracht-sv98--fsv,bundesliga-ticker-100.html'
                     });
+                    // use manual index to skip date headlines
+                    index = index + 1;
                 }
             });
 

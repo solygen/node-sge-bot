@@ -7,15 +7,14 @@
         name: 'sge4ever',
         icon: '',
         selector: {
-            'titles[]': '.post>h2',
-            'links[]': '.post>h2>a@href',
-            'contents[]': '.post .entry>p'
+            'titles[]': '.td-big-grid-wrapper .td-module-title>a',
+            'links[]': '.td-big-grid-wrapper .td-module-title>a@href'
         },
         hashtags: ['sge4ever'],
         extract: function (def, data) {
             var titles = data.titles,
                 links = data.links,
-                contents = data.contents,
+                contents = '',
                 list = [];
 
             titles.forEach(function (title, index) {
