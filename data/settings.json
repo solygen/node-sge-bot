@@ -1,6 +1,6 @@
 {
     "cleanup": false,
     "reporters": [
-        "console"
+        "console", "twitter"
     ]
 }
