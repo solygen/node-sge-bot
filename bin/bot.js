@@ -1,4 +1,6 @@
 //#!/usr/bin/env node
+// TODO: https://botwiki.org/tag/opensource
+
 (function () {
 
     'use strict';

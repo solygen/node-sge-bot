@@ -10,7 +10,7 @@
         filter: function (list) {
             return _.filter(list, function (item) {
                 var title = item.title.toLowerCase();
-                return /#\S*sge/.test(title) || /#eintracht/.test(title) || (title.indexOf('@eintracht_news') > -1);
+                return (/#\S*sge/.test(title) || /#eintracht/.test(title) || (title.indexOf('@eintracht_news') > -1)) && !/#\S*kicker/.test(title);
             });
         }
     };
