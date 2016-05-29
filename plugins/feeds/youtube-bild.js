@@ -3,7 +3,7 @@
     'use strict';
 
     module.exports =  {
-        url: 'http://gdata.youtube.com/feeds/base/users/BildBundesliga/uploads',
+        url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCu1FJLH2dp7dwKoCCGFkaMg',
         name: 'youtube:bildbundesliga',
         extract: function (data) {
             var stream = this, item;
