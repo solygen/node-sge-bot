@@ -16,7 +16,7 @@
                         title: item.title,
                         content: item.description,
                         source: 'fnp',
-                        short: '',
+                        short: item.description.slice(0,140),
                         url: item.link
                     });
                 }
