@@ -140,8 +140,8 @@
                 var recent = !bot.storage.get(obj.source, obj.title);
                 // update cache
                 bot.storage.set(obj.source, obj.title);
-                bot.statistics.increment(obj.source);
                 if (recent) {
+                    bot.statistics.increment(obj.source);
                     _.each(bot.plugins.reporter, function (rep) {
                         // process only for enabled reporters
                         if (bot.settings.reporters.indexOf(rep.id) < 0) return;
