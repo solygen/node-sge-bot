@@ -5,6 +5,7 @@
   "main": "bin/bot.js",
   "scripts": {
     "start": "node bin/bot.js",
+    "stop": "echo '{}' > data/storage.json && echo '{}' > data/statistics.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
