@@ -124,6 +124,9 @@
         // simple file based key value storage
         storage: require('../lib/storage').init(),
 
+        // statistics
+        statistics: require('../lib/statistics').init(),
+
         // settings
         settings: require('../lib/settings'),
 
@@ -137,6 +140,7 @@
                 var recent = !bot.storage.get(obj.source, obj.title);
                 // update cache
                 bot.storage.set(obj.source, obj.title);
+                bot.statistics.increment(obj.source);
                 if (recent) {
                     _.each(bot.plugins.reporter, function (rep) {
                         // process only for enabled reporters
