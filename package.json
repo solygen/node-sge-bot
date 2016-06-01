@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node bin/bot.js",
     "stop": "echo '{}' > data/storage.json && echo '{}' > data/statistics.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish-please": "publish-please",
+    "prepublish": "publish-please guard"
   },
   "dependencies": {
     "bitly": "2.0.0",
@@ -41,5 +43,8 @@
   "bugs": {
     "url": "https://github.com/solygen/node-sge-bot/issues"
   },
-  "homepage": "https://github.com/solygen"
+  "homepage": "https://github.com/solygen",
+  "devDependencies": {
+    "publish-please": "2.1.4"
+  }
 }
