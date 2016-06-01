@@ -3,7 +3,7 @@
     'use strict';
 
     module.exports =  {
-        url: 'http://rss.feedsportal.com/c/429/f/646653/index.rss',
+        url: 'http://www.fr-online.de/eintracht-frankfurt/1473446,1473446,view,asFeed.xml',
         name: 'fr',
         extract: function (data) {
             var stream = this, item;
