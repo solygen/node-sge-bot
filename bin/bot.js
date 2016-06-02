@@ -29,6 +29,10 @@
         return def.promise;
     }
 
+    function handleError(e) {
+        console.error('> ERROR: ' + e.config.name + ' is broken (' + e.message + ')');
+    }
+
     function onlyNewsworthy (list) {
         //console.error(config.id, list.length);
         return _.filter(list, isNewsworthy)
@@ -101,7 +105,7 @@
         feedparser.on('readable', _.bind(config.extract, feedparser, data));
         // resolve/reject deferred
         feedparser.on('end', _.bind(def.resolve, def, data));
-        feedparser.on('error', _.bind(def.reject, def));
+        feedparser.on('error', function (e) { def.reject({ message: e, config: config }); });
 
         return def.promise;
     }
@@ -162,7 +166,7 @@
             // feeds: async
             _.each(bot.plugins.feeds, function (config) {
                 parseRSS(config)
-                .then(clean)
+                .then(clean, handleError)
                 .then(bot.report.bind(this, config));
             });
 
