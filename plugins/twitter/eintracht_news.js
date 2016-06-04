@@ -5,7 +5,7 @@
     var _ = require('lodash');
 
     module.exports =  {
-        id: 'eintracht',
+        id: 'Eintracht_News',
         name: 'twitter-eintracht',
         filter: function (list) {
             // TODO: might filter #sgelive
