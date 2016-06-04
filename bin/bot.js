@@ -14,6 +14,8 @@
         debug = {
             app: require('debug')('app'),
             scrape: require('debug')('scrape'),
+            twitter: require('debug')('twitter'),
+            flow: require('debug')('flow'),
             reporting: require('debug')('reporting')
         };
 
@@ -34,8 +36,10 @@
     }
 
     function onlyNewsworthy (list) {
-        //console.error(config.id, list.length);
-        return _.filter(list, isNewsworthy)
+        debug.flow('config filtered to: ' + list.length);
+        var filtered = _.filter(list, isNewsworthy)
+        debug.flow('newsworthy filtered to: ' + filtered.length);
+        return filtered;
     }
 
     // check of source is recent
@@ -62,6 +66,8 @@
         return twitter.list(config.id)
             .then(
                 function (list, response) {
+                    debug.flow('');
+                    debug.flow(config.name + ' returned ' + list.length);
                     return _.map(list, function (data) {
                         return {
                             id: data.id_str,
@@ -76,8 +82,7 @@
                     });
                 },
                 function (err, response) {
-                    console.log(config.id);
-                    console.log(err);
+                    console.log('> ERROR: ' + config.id + 'is broken (' + err.message + ')');
                 }
             )
             .then(config.filter || fallback);
