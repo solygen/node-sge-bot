@@ -2,17 +2,12 @@
 
     'use strict';
 
-    var _ = require('lodash');
+    var util = require('../../lib/util');
 
     module.exports =  {
-        id: 'FAZ_NET',
+        id: 'FAZ_RheinMain',
         name: 'twitter-faz',
-        filter: function (list) {
-            return _.filter(list, function (item) {
-                var title = item.title.toLowerCase();
-                return /#(\S{3}sge\s)|#(sge\S{3}\s)/.test(title) || title.indexOf('@eintracht_news') > -1;
-            });
-        }
+        filter: util.relevant
     };
 
 }());

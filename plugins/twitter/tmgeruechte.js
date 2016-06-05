@@ -2,17 +2,12 @@
 
     'use strict';
 
-    var _ = require('lodash');
+    var util = require('../../lib/util');
 
     module.exports =  {
         id: 'TMgeruechte',
         name: 'twitter-tmgeruechte',
-        filter: function (list) {
-            return _.filter(list, function (item) {
-                var title = item.title.toLowerCase();
-                return /\S*#sge\S*/.test(title) || /\S*eintracht frankfurt\S*/.test(title);
-            });
-        }
+        filter: util.relevant
     };
 
 }());
