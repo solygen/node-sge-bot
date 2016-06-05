@@ -1,3 +1,18 @@
+1.3.0 / 2016-06-05
+==================
+
+  * 1.3.0
+  * readme and changelog
+  * fix source Michael Ebert
+  * move twitter checks to util.js
+  * new source
+  * better logging
+  * preparation for account change
+  * fixes source 'fnp' and adds feed error handling (reporting to console)
+  * 1.2.1
+  * introduce 'publish-please'
+  * source: fix fr
+
 1.2.0 / 2016-05-31
 ==================
 
