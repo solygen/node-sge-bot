@@ -3,8 +3,8 @@
     'use strict';
 
     module.exports =  {
-        id: 'Eintracht_News',
-        name: 'twitter-eintracht'
+        id: 'BranimirHrgota',
+        name: 'twitter-hrgota'
     };
 
 }());
