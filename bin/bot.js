@@ -82,7 +82,7 @@
                     });
                 },
                 function (err, response) {
-                    console.log('> ERROR: ' + config.id + 'is broken (' + err.message + ')');
+                    console.log('> ERROR: ' + config.id + ' is broken (' + err.message + ')');
                 }
             )
             .then(config.filter || fallback);
