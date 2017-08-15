@@ -4,6 +4,7 @@
 
     module.exports =  {
         url: 'http://www.fr-online.de/eintracht-frankfurt/1473446,1473446,view,asFeed.xml',
+        //url: 'https://www.fr.de/sport/eintracht/?_XML=rss',
         name: 'fr',
         extract: function (data) {
             var stream = this, item;

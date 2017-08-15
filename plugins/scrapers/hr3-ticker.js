@@ -20,10 +20,19 @@
             var list = [],
                 blacklist = [
                     'lilien',
+                    'frings',
+                    'hatira',
+                    'schipplock',
+                    'sv98',
+                    'fritsch',
+                    'lilie',
+                    'sulu',
                     'darmstadt',
                     'fsv',
                     'stöver',
-                    'bornheim'
+                    'bornheim',
+                    'großkreutz',
+                    'banggaard',
                 ];
 
 

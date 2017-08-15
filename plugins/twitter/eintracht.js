@@ -3,8 +3,8 @@
     'use strict';
 
     module.exports =  {
-        id: 'eintracht',
-        name: 'twitter-eintracht'
+        id: 'SGE4EVERde',
+        name: 'twitter-sge4ever'
     };
 
 }());
