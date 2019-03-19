@@ -33,6 +33,9 @@
                     'bornheim',
                     'großkreutz',
                     'banggaard',
+                    'rosenthal',
+                    'behrens',
+                    'böllenfalltor'
                 ];
 
 
