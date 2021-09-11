@@ -1,39 +1,26 @@
 (function () {
+  'use strict'
 
-    'use strict';
-
-    module.exports =  {
-        url: 'http://www.transfermarkt.de/eintracht-frankfurt/marktwertanalyse/verein/24',
-        name: 'tmmw',
-        icon: '',
-        selector: {
-            'titles[]': '.spielprofil_tooltip',
-            'images[]': '.bilderrahmen@src',
-            'links[]': '.spielprofil_tooltip@href',
-            'contents[]': '.rechts.hauptlink',
-            'trends[]': '.rechts.hauptlink>span@class'
-        },
-        hashtags: ['tm'],
-        extract: function (def, data) {
-            var titles = data.titles,
-                links = data.links,
-                images = data.images,
-                contents = data.contents,
-                trends = data.trends,
-                list = [];
-
-            titles.forEach(function (title, index) {
-                list.push({
-                    title: title + ': ' + contents[index],
-                    content: contents[index],
-                    short: title.slice(0,140),
-                    source: 'tmmw',
-                    url: 'http://www.transfermarkt.de' + (links[index].replace('/profil/', '/marktwertverlauf/'))
-                });
-            });
-
-            def.resolve(list);
-        }
-    };
-
-}());
+  module.exports = {
+    url: 'https://www.transfermarkt.de/eintracht-frankfurt/marktwertanalyse/verein/24',
+    name: 'tmmw',
+    selector: {
+      article: '.items > tbody > tr',
+      title: '.spielprofil_tooltip',
+      link: '.spielprofil_tooltip|href',
+      content: '.rechts.hauptlink'
+    },
+    filter: function (article, index) {
+      return true
+    },
+    map: function (article, cherrio) {
+      return {
+        title: article.title + ': ' + article.content,
+        content: article.content,
+        short: article.title.slice(0, 140),
+        url: 'https://www.transfermarkt.de' + (article.link.replace('/profil/', '/marktwertverlauf/')),
+        source: this.name
+      }
+    }
+  }
+}())

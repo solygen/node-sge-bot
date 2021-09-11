@@ -2,7 +2,7 @@
   'use strict'
 
   module.exports = {
-    id: 'fbinjuries',
-    name: 'twitter-fussballverletzungen'
+    id: 'Sky_MaxB',
+    name: 'twitter-max-bielefeld'
   }
 }())

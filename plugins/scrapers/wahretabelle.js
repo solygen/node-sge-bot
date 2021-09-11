@@ -1,31 +1,25 @@
 (function () {
+  'use strict'
 
-    'use strict';
-
-    module.exports =  {
-        url: 'https://www.wahretabelle.de/verein/eintr-frankfurt/11',
-        name: 'wahretabelle',
-        icon: '',
-        selector: {
-            'links[]': '.spielergebnis .ac a@href'
-        },
-        hashtags: ['wahretabelle'],
-        extract: function (def, data) {
-            var links = data.links,
-                list = [];
-
-            links.forEach(function (link, index) {
-                list.push({
-                    title: 'Auswertung: ' + (index + 1) + '. Spieltag',
-                    content: '',
-                    short: '',
-                    source: 'wahretabelle',
-                    url: 'https://www.wahretabelle.de' + link
-                });
-            });
-
-            def.resolve(list);
-        }
-    };
-
-}());
+  module.exports = {
+    url: 'https://www.wahretabelle.de/verein/eintr-frankfurt/11',
+    name: 'wahretabelle',
+    selector: {
+      article: '.spielergebnis',
+      title: 'td.ac:first-of-type',
+      link: '.ac a|href'
+    },
+    filter: function (article, index) {
+      return true
+    },
+    map: function (article) {
+      const title = 'Auswertung: ' + article.title + ' Spieltag'
+      return {
+        title: title,
+        short: title.slice(0, 140),
+        url: 'https://www.wahretabelle.de' + article.link,
+        source: this.name
+      }
+    }
+  }
+}())

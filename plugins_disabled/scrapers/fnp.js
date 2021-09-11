@@ -2,34 +2,28 @@
   'use strict'
 
   module.exports = {
-    url: 'https://www.fr.de/eintracht-frankfurt',
-    name: 'fr',
+    url: 'https://www.fnp.de/eintracht-frankfurt',
+    name: 'fnp',
     selector: {
       article: '.id-Teaser-el--hasimage:not(.id-Teaser-el--nativeBEEPtemplate)',
       title: '.id-Teaser-el-content-headline-text',
       content: '.id-Teaser-el-content-text-text',
-      link: '.id-LinkOverlay-link|href',
+      link: '.id-LinkOverlay-link',
       subtitle: '.id-Teaser-el-content-kicker-text',
       author: '.id-Teaser-el-content-author'
     },
     filter: function (article, index) {
-      if (article.subtitle.indexOf('ballhorn') > -1) return false
-      if (article.subtitle.indexOf('transfer-ticker') > -1) return false
       if (article.title.indexOf('Live-Ticker') > -1) return false
-      if (article.title.indexOf('Frauen') > -1) return false
       if (index > 2) return false
       return true
     },
     map: function (article) {
-      const title = article.title.length <= 25
-        ? article.subtitle + ': ' + article.title
-        : article.title
       return {
-        title: title,
+        title: article.title,
         content: article.content,
         short: article.title.slice(0, 140),
-        url: 'https://www.fr.de' + article.link,
-        author: article.author.replace('Von ', '').replace(/\s/g, '').replace(',', ' ').replace('und', ' ').toLowerCase(),
+        url: 'https://www.fnp.de' + article.link,
+        author: article.author.replace('Von ', ''),
         source: this.name
       }
     }

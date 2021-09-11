@@ -23,8 +23,8 @@
   ]
 
   module.exports = {
-    url: 'https://www.hessenschau.de/sport/fussball/aktuelles-von-eintracht-frankfurt--darmstadt-98-news-im-bundesliga-ticker,bundesliga-ticker-104.html',
-    name: 'hr3ticker',
+    url: 'https://www.hessenschau.de/sport/fussball/dienstag-ab-10-uhr-der-transferschluss-im-liveticker,transferschluss-liveticker-100.html',
+    name: 'hr3transferticker',
     selector: {
       article: '.js-timeline .c-tickerItem',
       title: '.c-tickerItem__title',

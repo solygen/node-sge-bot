@@ -1,53 +1,48 @@
 (function () {
+  'use strict'
 
-    'use strict';
+  const lib = require('../../lib/twitter')
+  const bitly = require('../../lib/bitly')
+  const debug = {
+    twitter: require('debug')('twitter')
+  }
 
-    var lib = require('../../lib/twitter'),
-        bitly = require('../../lib/bitly'),
-        debug = {
-            twitter: require('debug')('twitter')
-        };
+  const post = function (data) {
+    debug.twitter('TWITTER:4')
 
-    var post = function (data, err, response) {
-        var url, shorturl, content;
+    // create link
+    const content =
+            // title
+            data.title + '\u000a' +
+            // hashtags + link
+            '#sge' + ' ' + '#' + data.source + ' ' +
+            // author
+            (data.author ? data.author.split(' ').map((str) => { return '#' + str }).join(' ') + ' ' : '') +
+            // url
+            (data.shorturl || data.url) + '\u000a'
 
-        // use bitly shortened url when available
-        if (err) {
-            debug.twitter(JSON.stringify(err));
-        } else {
-            debug.twitter(JSON.stringify(data));
-            debug.twitter(shorturl);
-            shorturl = response.data.url;
-        }
-        url = shorturl || data.url;
+    // log
+    debug.twitter('TWITTER: ' + data.title)
 
-        // create link
-        content = // title
-                  data.title + '\u000a' +
-                  // hashtags + link
-                  '#sge'  +  ' ' + '#' + data.source + ' '  + url + '\u000a';
+    // tweet
+    lib.post(content)
+  }
 
-        // log
-        debug.twitter('TWITTER: ' + data.title);
+  module.exports = {
+    id: 'twitter',
+    write: async function (data) {
+      if (data.id && data.type && data.type === 'tweet') {
+        return lib.retweet(data.id)
+          .then(function () {
+            debug.twitter('TWITTER: retweeted ' + data.title)
+          }, function (err) {
+            debug.twitter('TWITTER: retweet:error ' + err.allErrors)
+          })
+      }
 
-        // tweet
-        lib.post(content);
-    };
-
-    module.exports = {
-        id: 'twitter',
-        write: function (data) {
-            // pipe url part through shortener
-            if (data.id && data.type && data.type === 'tweet') {
-                lib.retweet(data.id)
-                    .then(function () {
-                        debug.twitter('TWITTER: retweeted ' + data.title);
-                    }, function (err) {
-                        debug.twitter('TWITTER: retweet:error ' + err.allErrors);
-                    });
-            } else {
-                bitly.shorten(data.url, post.bind(this, data));
-            }
-        }
-    };
-}());
+      // pipe url part through shortener
+      data.shorturl = await bitly.shorten(data.url)
+      post(data)
+    }
+  }
+}())
