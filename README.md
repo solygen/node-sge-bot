@@ -11,23 +11,16 @@
 - [![David](https://img.shields.io/david/solygen/node-sge-bot.svg?style=flat-square)](https://david-dm.org/solygen/node-sge-bot)
 - [![David](https://img.shields.io/david/dev/solygen/node-sge-bot.svg?style=flat-square)](https://david-dm.org/solygen/node-sge-bot#info=devDependencies&view=table)
 
-## technical debt
-
-- requires node 4
-
 ## demo / twitter account
 
 [twitter.com/sge_bot](https://twitter.com/sge_bot)
 
-
 ## getting started
 
 - download/clone the repo
-- add you credentials (`data/bitly.json`, `data/twitter.json`)
-- enable twitter output by adding 'twitter' to reporters at `data/settings`
+- add you credentials (.env)
+- enable twitter output by adding 'twitter' to reporters at `.env`
 - run `npm start`
-- enable debug output with `DEBUG=app,scrape,reporting,twitter,flow node bin/bot.js`
-
 
 ## twitter avatar
 

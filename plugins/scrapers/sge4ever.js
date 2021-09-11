@@ -1,34 +1,30 @@
 (function () {
+  'use strict'
 
-    'use strict';
-
-    module.exports =  {
-        url: 'http://www.sge4ever.de/',
-        name: 'sge4ever',
-        icon: '',
-        selector: {
-            'titles[]': '.td-big-grid-wrapper .td-module-title>a',
-            'links[]': '.td-big-grid-wrapper .td-module-title>a@href'
-        },
-        hashtags: ['sge4ever'],
-        extract: function (def, data) {
-            var titles = data.titles,
-                links = data.links,
-                contents = '',
-                list = [];
-
-            titles.forEach(function (title, index) {
-                list.push({
-                    title: title,
-                    content: contents[index],
-                    short: title.slice(0,140),
-                    source: 'sge4ever',
-                    url: links[index]
-                });
-            });
-
-            def.resolve(list);
-        }
-    };
-
-}());
+  module.exports = {
+    url: 'https://www.sge4ever.de/',
+    name: 'sge4ever',
+    selector: {
+      article: '.td-big-grid-wrapper .td-big-grid-post',
+      title: '.td-module-title>a',
+      link: '.td-module-title>a|href',
+      author: '.td-post-author-name > a',
+      extra: '.td-post-category'
+    },
+    filter: function (article, index) {
+      if (article.extra.indexOf('Frauen') > -1) return false
+      if (article.title.indexOf('Frauen') > -1) return false
+      return index <= 3
+    },
+    map: function (article) {
+      return {
+        title: article.title,
+        content: article.content,
+        short: article.title.slice(0, 140),
+        url: article.link,
+        author: article.author.replace(' ', '').replace('Redaktion', '').toLowerCase(),
+        source: this.name
+      }
+    }
+  }
+}())

@@ -1,38 +1,34 @@
 (function () {
+  'use strict'
 
-    'use strict';
-
-    module.exports =  {
-        url: 'http://hessenschau.de/sport/fussball/eintracht-frankfurt/index.html   ',
-        name: 'hr3',
-        icon: '',
-        selector: {
-            'titles[]': 'article a.teaser__headlineLink .text__headline',
-            'links[]': 'article a.teaser__headlineLink@href'
-        },
-        hashtags: ['hr3'],
-        extract: function (def, data) {
-            var titles = data.titles,
-                links = data.links,
-                contents = '',
-                list = [];
-
-            titles.forEach(function (title, index) {
-
-                // ignore ticker
-                if (index === 0 || index >= 5) return;
-
-                list.push({
-                    title: title,
-                    content: contents[index],
-                    short: title.slice(0,140),
-                    source: 'hr3',
-                    url: 'http://www.hr-online.de' + links[index]
-                });
-            });
-
-            def.resolve(list);
-        }
-    };
-
-}());
+  module.exports = {
+    url: 'https://hessenschau.de/sport/fussball/eintracht-frankfurt/index.html',
+    name: 'hr3',
+    selector: {
+      article: 'article.c-teaser',
+      title: '.text__headline',
+      subtitle: '.c-teaser__topline.text__topline',
+      content: '.c-teaser__shorttext',
+      link: '.c-teaser__body > a|href',
+      author: '.c-teaser__author'
+    },
+    filter: function (article, index) {
+      return index <= 2 && article.title.indexOf('+++') < 0
+    },
+    map: function (article) {
+      article.subtitle = article.subtitle.replace(' – der Eintracht-Videopodcast', '')
+      const title = article.subtitle && article.title.indexOf(':') < 0
+        ? article.subtitle + ': ' + article.title
+        : article.title
+      return {
+        title: title,
+        content: article.content,
+        short: article.title.slice(0, 140),
+        url: article.link,
+        subtitle: article.subtitle,
+        author: article.author.replace('Von ', '').replace(/\s/g, '').replace(',', ' ').replace('und', ' ').toLowerCase(),
+        source: this.name
+      }
+    }
+  }
+}())

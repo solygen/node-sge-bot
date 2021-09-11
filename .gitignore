@@ -1,2 +1,4 @@
 node_modules
 _bkp
+_backup_prod
+.env
