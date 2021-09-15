@@ -1,20 +1,23 @@
 (function () {
   'use strict'
 
+  const _ = require('lodash')
+
   module.exports = {
-    url: 'http://www.fnp.de/storage/rss/rss/eintracht/feed.xml',
-    name: 'fnp',
+    url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UClCIWcZNvq15p0Y-E4ToGOw',
+    name: 'youtube:sportschau',
     extract: function (data) {
       const stream = this; let item
       // add to data (collector)
       while ((item = stream.read())) {
-        // TODO: umlauts
-        if (item.title.indexOf('Tippspiel') === -1) {
-          item.description = item.description || ''
+        if (item.title.indexOf('Frankfurt') > -1) {
+          // fix feed
+          item.description = _.isNull(item.description) ? '' : item.description
+          item.title = item.title.split('|')[0]
           data.push({
             title: item.title,
             content: item.description,
-            source: 'fnp',
+            source: 'sportschau',
             short: item.description.slice(0, 140),
             url: item.link
           })

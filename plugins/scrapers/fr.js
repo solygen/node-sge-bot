@@ -15,6 +15,7 @@
     filter: function (article, index) {
       if (article.subtitle.indexOf('ballhorn') > -1) return false
       if (article.subtitle.indexOf('transfer-ticker') > -1) return false
+      if (article.subtitle.indexOf('Frauen') > -1) return false
       if (article.title.indexOf('Live-Ticker') > -1) return false
       if (article.title.indexOf('Frauen') > -1) return false
       if (index > 2) return false
