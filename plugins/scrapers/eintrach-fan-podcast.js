@@ -3,7 +3,7 @@
 
   module.exports = {
     url: 'https://www.eintracht-podcast.de/tag/podcast-2',
-    name: 'eintracht-podcast',
+    name: 'eintrachtpodcast',
     selector: {
       article: 'article',
       title: '.entry-title a',

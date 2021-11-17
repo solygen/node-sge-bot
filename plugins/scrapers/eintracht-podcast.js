@@ -3,7 +3,7 @@
 
   module.exports = {
     url: 'https://eintracht.podigee.io/',
-    name: 'podcast-official',
+    name: 'podcastofficial',
     selector: {
       article: 'article',
       title: '.post-heading a',

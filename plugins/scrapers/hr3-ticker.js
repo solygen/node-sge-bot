@@ -20,7 +20,8 @@
     'wehen',
     'wiesbaden',
     'svww',
-    'neue folge'
+    'neue folge',
+    'FUSSBALL 2000'
   ]
 
   module.exports = {
