@@ -13,7 +13,6 @@
         // only latest one
         if (data.length > 0) return
         item.description = _.isNull(item.description) ? '' : item.description
-        console.log(item.title)
         data.push({
           title: item.title.replace(' | Bundesliga Reaktion', ''),
           content: item.description,
