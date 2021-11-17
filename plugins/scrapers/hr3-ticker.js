@@ -19,7 +19,8 @@
     'rehm',
     'wehen',
     'wiesbaden',
-    'svww'
+    'svww',
+    'neue folge'
   ]
 
   module.exports = {
@@ -29,13 +30,16 @@
       article: '.js-timeline .c-tickerItem',
       title: '.c-tickerItem__title',
       content: '.copytext__text',
-      link: '.c-tickerItem__anchor|id'
+      link: '.c-tickerItem__anchor|id',
+      extra: '.c-posterTeaser a|href'
     },
     filter: function (article, index) {
       let pass = true
       BLACKLIST.forEach(function (word) {
         pass = pass && article.title.toLowerCase().indexOf(word) === -1 && article.content.toLowerCase().indexOf(word) === -1
       })
+      // ignore teaser of hr3 article
+      if (article.extra) return false
       return index <= 2 && pass
     },
     map: function (article, index) {

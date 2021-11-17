@@ -12,6 +12,7 @@
     },
     filter: function (article, index) {
       if (index === 0 || !article.title) return false
+      if (article.title.indexOf('Frauen') > -1) return false
       if (index > 2) return false
       return true
     },

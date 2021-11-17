@@ -6,19 +6,22 @@
     name: 'tmmw',
     selector: {
       article: '.items > tbody > tr',
-      title: '.spielprofil_tooltip',
-      link: '.spielprofil_tooltip|href',
-      content: '.rechts.hauptlink'
+      title: '.inline-table img|title',
+      link: 'tm-tooltip a|href',
+      content: '.rechts.hauptlink',
+      extra: '.rechts.hauptlink span|title'
     },
     filter: function (article, index) {
+      article.extra = (article.extra || '').replace('Vorheriger Marktwert: ', '').replace('-', '')
+      if (article.extra === article.content) return false
       return true
     },
     map: function (article, cherrio) {
       return {
-        title: article.title + ': ' + article.content,
+        title: article.title + ': ' + article.content + (article.extra ? ` (${article.extra})` : ''),
         content: article.content,
         short: article.title.slice(0, 140),
-        url: 'https://www.transfermarkt.de' + (article.link.replace('/profil/', '/marktwertverlauf/')),
+        url: 'https://www.transfermarkt.de' + (article.link.replace('/profil/', '/marktwertverlauf/')) + '#' + encodeURI(article.content),
         source: this.name
       }
     }

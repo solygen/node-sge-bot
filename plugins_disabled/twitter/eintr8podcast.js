@@ -1,16 +1,13 @@
 (function () {
   'use strict'
 
-  const _ = require('lodash')
-
   module.exports = {
     id: 'eintr8podcast',
     name: 'twitter-eintr8podcast',
-    filter: function (list) {
-      return _.filter(list, function (item) {
-        const title = item.title.toLowerCase()
-        return /\S*#ep\d\d\d\S*/.test(title)
-      })
+    filter: function (item, index) {
+      if (item.title.indexOf('Wir sind Live') < 0) return
+      if (item.type !== 'tweet') return
+      return index === 0
     }
   }
 }())

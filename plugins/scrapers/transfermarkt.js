@@ -14,6 +14,7 @@
       if (index > 2) return false
       if (article.title.indexOf('wählen') >= 0) return
       if (article.title.indexOf('tippt') >= 0) return
+      if (article.title.indexOf('Tipprunde') >= 0) return
       return true
     },
     map: function (article) {

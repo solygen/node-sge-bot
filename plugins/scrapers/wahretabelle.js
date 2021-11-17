@@ -9,8 +9,9 @@
       title: 'td.ac:first-of-type',
       link: '.ac a|href'
     },
-    filter: function (article, index) {
-      return true
+    filter: function (article, index, list) {
+      // only last element
+      return index === list.length - 1
     },
     map: function (article) {
       const title = 'Auswertung: ' + article.title + ' Spieltag'
