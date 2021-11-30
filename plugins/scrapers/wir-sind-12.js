@@ -6,7 +6,7 @@
     name: 'wirsind12',
     selector: {
       article: '.blog-item',
-      title: '.blog-title',
+      title: '.blog-excerpt-wrapper > p > strong',
       content: '.blog-excerpt-wrapper > p',
       link: '.blog-more-link|href',
       author: '.blog-meta-primary .blog-author'

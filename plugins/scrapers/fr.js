@@ -18,6 +18,7 @@
       if (article.subtitle.indexOf('Frauen') > -1) return false
       if (article.title.indexOf('Live-Ticker') > -1) return false
       if (article.title.indexOf('Frauen') > -1) return false
+      if (article.title.indexOf('Debütantin') > -1) return false
       if (index > 2) return false
       return true
     },
@@ -29,7 +30,7 @@
         title: title,
         content: article.content,
         short: article.title.slice(0, 140),
-        url: 'https://www.fr.de' + article.link,
+        url: 'https:' + article.link,
         author: article.author.replace('Von ', '').replace(/\s/g, '').replace(',', ' ').replace('und', ' ').toLowerCase(),
         source: this.name
       }
