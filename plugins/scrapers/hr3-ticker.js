@@ -21,7 +21,7 @@
     'wiesbaden',
     'svww',
     'neue folge',
-    'FUSSBALL 2000'
+    'fussball 2000'
   ]
 
   module.exports = {
@@ -44,6 +44,7 @@
       return index <= 2 && pass
     },
     map: function (article, index) {
+      article.title = article.title.replace('+++ ', '').replace(' +++', '')
       return {
         title: article.title,
         content: article.content,

@@ -13,10 +13,10 @@
       author: '.c-teaser__author'
     },
     filter: function (article, index) {
+      if (article.subtitle && article.subtitle.indexOf('FUSSBALL 2000') >= 0) return
       return index <= 2 && article.title.indexOf('+++') < 0
     },
     map: function (article) {
-      article.subtitle = article.subtitle.replace(' – der Eintracht-Videopodcast', '')
       const title = article.subtitle && article.title.indexOf(':') < 0
         ? article.subtitle + ': ' + article.title
         : article.title

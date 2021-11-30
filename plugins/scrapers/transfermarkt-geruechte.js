@@ -6,7 +6,7 @@
     name: 'tmrumour',
     selector: {
       article: '.threaduebersicht-threads:not(.sticky-threads) > article.thread',
-      title: '.spielprofil_tooltip',
+      title: '.spielername',
       content: '.wechsel-verein-name',
       extra: '.geruecht-zahl',
       link: '.wechsel-verein-name>a[href]|href'
