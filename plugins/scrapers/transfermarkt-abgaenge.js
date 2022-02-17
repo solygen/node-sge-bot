@@ -3,7 +3,7 @@
 
   module.exports = {
     url: 'https://www.transfermarkt.de/eintracht-frankfurt/geruechteabgaenge/verein/24/plus/1',
-    name: 'tmrumour',
+    name: 'tmrumour_leaving',
     selector: {
       article: '.items > tbody > tr',
       title: 'td:nth-child(9) > a|title',
@@ -15,6 +15,7 @@
       return index <= 2
     },
     map: function (article) {
+      article.link = (article.link || '').replace(/(post_id\/.*)/, 'nurquellen/1')
       return {
         title: article.title + ': ' + article.content.replace('Wechsel zu ', '').replace('Interesse von ', '').replace(' ', '') + ' (Quelle: ' + article.subtitle + ')',
         content: article.content,

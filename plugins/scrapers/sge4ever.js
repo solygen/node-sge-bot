@@ -22,7 +22,7 @@
         content: article.content,
         short: article.title.slice(0, 140),
         url: article.link,
-        author: article.author.replace(' ', '').replace('Redaktion', '').toLowerCase(),
+        author: article.author.replace(' ', '').replace('Redaktion', '').replace('Gastautor', '').toLowerCase(),
         source: this.name
       }
     }
