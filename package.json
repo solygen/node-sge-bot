@@ -1,15 +1,38 @@
 {
   "name": "node-sge-bot",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0",
   "description": "eintracht frankfurt twitter news bot",
+  "keywords": [
+    "service",
+    "bot",
+    "twitter",
+    "news"
+  ],
+  "homepage": "https://github.com/solygen",
+  "bugs": {
+    "url": "https://github.com/solygen/node-sge-bot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/solygen/node-sge-bot.git"
+  },
+  "license": "Unlicense",
+  "author": "Frank Paczynski <frank@solygen.de> (https://github.com/solygen)",
   "main": "bin/bot.js",
+  "bin": {
+    "bot": "bin/bot.js"
+  },
   "scripts": {
+    "lint": "eslint .",
     "start": "node bin/bot.js",
     "stop": "echo '{}' > data/storage.json && echo '{}' > data/statistics.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "resolutions": {
+    "nth-check": "^2.0.1"
+  },
   "dependencies": {
-    "axios": "0.21.1",
+    "axios": "0.24.0",
     "bitly": "7.1.2",
     "cheerio": "1.0.0-rc.10",
     "debug": "4.3.2",
@@ -21,34 +44,15 @@
     "request": "2.88.2",
     "twit": "2.2.11"
   },
-  "engines": {
-    "node": ">=12.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/solygen/node-sge-bot.git"
-  },
-  "bin": {
-    "bot": "bin/bot.js"
-  },
-  "keywords": [
-    "service",
-    "bot",
-    "twitter",
-    "news"
-  ],
-  "author": "Frank Paczynski <frank@solygen.de> (https://github.com/solygen)",
-  "license": "Unlicense",
-  "bugs": {
-    "url": "https://github.com/solygen/node-sge-bot/issues"
-  },
-  "homepage": "https://github.com/solygen",
   "devDependencies": {
-    "eslint": "^7.32.0",
+    "eslint": "^8.2.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "standard": "^16.0.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
