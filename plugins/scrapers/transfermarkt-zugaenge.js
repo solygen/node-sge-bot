@@ -15,7 +15,11 @@
       return index <= 2
     },
     map: function (article) {
-      article.link = (article.link || '').replace(/(post_id\/.*)/, 'nurquellen/1')
+      // page:         https://www.transfermarkt.de/diego-demme-zu-eintracht-frankfurt-/thread/forum/154/thread_id/1058772/post_id/2727668#2727668
+      // redirects to: https://www.transfermarkt.de/diego-demme-zu-eintracht-frankfurt-/thread/forum/154/thread_id/1058772/page/2#anchor_2727668
+      // target:       https://www.transfermarkt.de/diego-demme-zu-eintracht-frankfurt-/thread/forum/154/thread_id/1058772/nurquellen/1#anchor_2727668
+      const hash = `anchor_${article.link.split('#')[1]}`
+      article.link = (article.link || '').replace(/(post_id\/.*)/, 'nurquellen/1') + `#${hash}`
       return {
         title: article.title + ': ' + article.content.replace('Wechsel zu ', '').replace('Interesse von ', '').replace(' ', '') + ' (Quelle: ' + article.subtitle + ')',
         content: article.content,

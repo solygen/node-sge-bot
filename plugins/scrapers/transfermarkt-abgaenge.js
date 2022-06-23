@@ -15,7 +15,11 @@
       return index <= 2
     },
     map: function (article) {
-      article.link = (article.link || '').replace(/(post_id\/.*)/, 'nurquellen/1')
+      // page:         https://www.transfermarkt.de/juventus-turin-interessiert-an-filip-kostic/thread/forum/154/thread_id/1058046/post_id/2725815#2725815
+      // redirects to: https://www.transfermarkt.de/juventus-turin-interessiert-an-filip-kostic/thread/forum/154/thread_id/1058046/page/9#anchor_2725815
+      // target:       https://www.transfermarkt.de/juventus-turin-interessiert-an-filip-kostic/thread/forum/154/thread_id/1058046/nurquellen/1#anchor_2725815
+      const hash = `anchor_${article.link.split('#')[1]}`
+      article.link = (article.link || '').replace(/(post_id\/.*)/, 'nurquellen/1') + `#${hash}`
       return {
         title: article.title + ': ' + article.content.replace('Wechsel zu ', '').replace('Interesse von ', '').replace(' ', '') + ' (Quelle: ' + article.subtitle + ')',
         content: article.content,
