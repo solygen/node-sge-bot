@@ -164,9 +164,10 @@
     report: function (config, data) {
       debug.reporting(config.name + ' (' + data.length + ')')
       _.each(data, function (obj) {
-        const recent = !bot.storage.get(obj.source, obj.title) && !bot.storage.get(obj.source, obj.url ? obj.url : obj.title)
+        const id = obj.id || obj.url || obj.title
+        const recent = !bot.storage.get(obj.source, id)
         // update cache
-        bot.storage.set(obj.source, obj.url ? obj.url : obj.title)
+        bot.storage.set(obj.source, id)
         if (recent) {
           bot.statistics.increment(obj.source)
           _.each(bot.plugins.reporter, function (rep) {

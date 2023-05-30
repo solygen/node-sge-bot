@@ -25,7 +25,14 @@
     debug.twitter('TWITTER: ' + data.title)
 
     // tweet
-    lib.post(content)
+    lib.post(content).then(() => {
+      debug.twitter('!!!!')
+      debug.twitter('done')
+    }, (err) => {
+      debug.twitter('???')
+      debug.twitter(err.allErrors)
+      debug.twitter(JSON.parse(err.allErrors))
+    })
   }
 
   module.exports = {

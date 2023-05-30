@@ -26,7 +26,10 @@
       const title = article.title.length <= 25
         ? article.subtitle + ': ' + article.title
         : article.title
+
+      const [, id] = article.link.match(/-(\d*).html/)
       return {
+        id,
         title: title,
         content: article.content,
         short: article.title.slice(0, 140),
