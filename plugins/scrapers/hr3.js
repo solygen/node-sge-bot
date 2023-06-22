@@ -5,12 +5,11 @@
     url: 'https://hessenschau.de/sport/fussball/eintracht-frankfurt/index.html',
     name: 'hr3',
     selector: {
-      article: 'article.c-teaser',
-      title: '.text__headline',
-      subtitle: '.c-teaser__topline.text__topline',
-      content: '.c-teaser__shorttext',
-      link: '.c-teaser__body > a|href',
-      author: '.c-teaser__author'
+      article: 'div.grid article',
+      title: '.cy-teaser-title',
+      subtitle: '.text-toplineColor',
+      content: 'span.flex',
+      link: 'header > a|href'
     },
     filter: function (article, index) {
       if (article.subtitle && article.subtitle.indexOf('FUSSBALL 2000') >= 0) return
