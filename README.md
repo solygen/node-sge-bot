@@ -3,7 +3,7 @@
 > eintracht frankfurt news bot
 
 - collects news of different source types (feeds, twitter, websites)
-- twitters title, link and source-hashtag
+- posts title, link and source-hashtag on mastodon
 
 ## badges
 
@@ -11,15 +11,15 @@
 - [![David](https://img.shields.io/david/solygen/node-sge-bot.svg?style=flat-square)](https://david-dm.org/solygen/node-sge-bot)
 - [![David](https://img.shields.io/david/dev/solygen/node-sge-bot.svg?style=flat-square)](https://david-dm.org/solygen/node-sge-bot#info=devDependencies&view=table)
 
-## demo / twitter account
+## demo / mastodon account
 
-[twitter.com/sge_bot](https://twitter.com/sge_bot)
+[https://sgebot.de/](https://sgebot.de/)
 
 ## getting started
 
 - download/clone the repo
 - add you credentials (.env)
-- enable twitter output by adding 'twitter' to reporters at `.env`
+- enable mastodon output by adding 'mastodon' to reporters at `.env`
 - run `npm start`
 
 ## twitter avatar
