@@ -37,7 +37,7 @@
     "cheerio": "1.0.0-rc.10",
     "debug": "4.3.2",
     "deferred": "0.7",
-    "dotenv": "10.0.0",
+    "dotenv": "^16.4.5",
     "feedparser": "2.2.10",
     "jsonfile": "6.1.0",
     "lodash": "4.17.21",
