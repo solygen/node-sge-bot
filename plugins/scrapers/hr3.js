@@ -1,38 +1,34 @@
 (function () {
+  'use strict'
 
-    'use strict';
-
-    module.exports =  {
-        url: 'http://hessenschau.de/sport/fussball/eintracht-frankfurt/index.html   ',
-        name: 'hr3',
-        icon: '',
-        selector: {
-            'titles[]': 'article a.teaser__headlineLink .text__headline',
-            'links[]': 'article a.teaser__headlineLink@href'
-        },
-        hashtags: ['hr3'],
-        extract: function (def, data) {
-            var titles = data.titles,
-                links = data.links,
-                contents = '',
-                list = [];
-
-            titles.forEach(function (title, index) {
-
-                // ignore ticker
-                if (index === 0 || index >= 5) return;
-
-                list.push({
-                    title: title,
-                    content: contents[index],
-                    short: title.slice(0,140),
-                    source: 'hr3',
-                    url: 'http://www.hr-online.de' + links[index]
-                });
-            });
-
-            def.resolve(list);
-        }
-    };
-
-}());
+  module.exports = {
+    url: 'https://hessenschau.de/sport/fussball/eintracht-frankfurt/index.html',
+    name: 'hr3',
+    selector: {
+      // ignore ticker block
+      article: 'div.grid article:not(.bg-highlight-3)',
+      title: 'header .font-title',
+      subtitle: 'header .font-heading',
+      content: 'div.text-base > span',
+      link: 'header > a|href'
+    },
+    filter: function (article, index) {
+      if (article.subtitle && article.subtitle.indexOf('FUSSBALL 2000') >= 0) return
+      return index <= 2 && article.title.indexOf('+++') < 0
+    },
+    map: function (article) {
+      const title = article.subtitle && article.title.indexOf(':') < 0
+        ? article.subtitle + ': ' + article.title
+        : article.title
+      return {
+        title: title,
+        content: article.content,
+        short: article.title.slice(0, 140),
+        url: article.link,
+        subtitle: article.subtitle,
+        author: article.author.replace('Von ', '').replace(/\s/g, '').replace(',', ' ').replace('und', ' ').toLowerCase(),
+        source: this.name
+      }
+    }
+  }
+}())

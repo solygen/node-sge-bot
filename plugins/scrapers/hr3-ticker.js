@@ -1,87 +1,59 @@
 (function () {
+  'use strict'
 
-    'use strict';
+  const BLACKLIST = [
+    'lilien',
+    'svww',
+    'hatira',
+    'schipplock',
+    'sv98',
+    'fritsch',
+    'lilie',
+    'sulu',
+    'darmstadt',
+    'fsv',
+    'stöver',
+    'bornheim',
+    'herrmann',
+    'darmstädter',
+    'rehm',
+    'wehen',
+    'wiesbaden',
+    'svww',
+    'neue folge',
+    'fussball 2000'
+  ]
 
-    module.exports =  {
-        url: 'http://hessenschau.de/sport/fussball/aktuelles-von-eintracht-sv98--fsv,bundesliga-ticker-100.html',
-        name: 'hr3-ticker',
-        icon: '',
-        selector: {
-            'titles[]': '.copytext__headline[itemprop="headline"]',
-            'contents[]': '.copytext__text'
-        },
-        hashtags: ['hr3'],
-        extract: function (def, data) {
-
-            var titles = data.titles,
-                contents = data.contents;
-
-            //console.log(titles);
-            var list = [],
-                blacklist = [
-                    'lilien',
-                    'frings',
-                    'hatira',
-                    'schipplock',
-                    'sv98',
-                    'fritsch',
-                    'lilie',
-                    'sulu',
-                    'darmstadt',
-                    'fsv',
-                    'stöver',
-                    'bornheim',
-                    'großkreutz',
-                    'banggaard',
-                    'rosenthal',
-                    'behrens',
-                    'böllenfalltor'
-                ];
-
-
-            titles = titles.filter(function (h2) {
-                return h2.indexOf('+++') >= 0;
-            });
-
-            contents = contents.filter(function (h2) {
-                return h2.length >= 50;
-            });
-
-            titles.forEach(function (h2, index) {
-
-                // limit to 5 latest
-                if (index >= 5) return;
-
-                // normalize title
-                var title = h2.replace('+++', '').replace('+++', '').trim(),
-                    content = contents[index];
-
-                // filter blacklist items
-                var pass = !!title;
-
-                blacklist.forEach(function (word) {
-                    if (pass) {
-                        pass = title.toLowerCase().indexOf(word) === -1 &&
-                               content.toLowerCase().indexOf(word) === -1;
-
-                    }
-                });
-
-                if (pass) {
-                    list.push({
-                        title: title,
-                        content: content,
-                        short: title.slice(0,140),
-                        source: 'hr3ticker',
-                        url: 'http://hessenschau.de/sport/fussball/aktuelles-von-eintracht-sv98--fsv,bundesliga-ticker-100.html'
-                    });
-                    // use manual index to skip date headlines
-                    index = index + 1;
-                }
-            });
-
-            def.resolve(list);
-        }
-    };
-
-}());
+  module.exports = {
+    url: 'https://www.hessenschau.de/sport/fussball/aktuelles-von-eintracht-frankfurt--darmstadt-98-news-im-bundesliga-ticker,bundesliga-ticker-104.html',
+    name: 'hr3ticker',
+    selector: {
+      article: '.js-timeline .c-tickerItem',
+      title: '.c-tickerItem__title',
+      content: '.copytext__text',
+      link: '.c-tickerItem__anchor|id',
+      extra: '.c-posterTeaser a|href'
+    },
+    filter: function (article, index) {
+      let pass = true
+      BLACKLIST.forEach(function (word) {
+        pass = pass && article.title.toLowerCase().indexOf(word) === -1 && article.content.toLowerCase().indexOf(word) === -1
+      })
+      // ignore teaser of hr3 article
+      if (article.extra) return false
+      return index <= 2 && pass
+    },
+    map: function (article, index) {
+      article.title = article.title.replace('+++ ', '').replace(' +++', '')
+      return {
+        title: article.title,
+        content: article.content,
+        short: article.title.slice(0, 140),
+        // link: id of anchor node
+        url: this.url + '#' + article.link,
+        subtitle: '',
+        source: this.name
+      }
+    }
+  }
+}())

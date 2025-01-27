@@ -4,18 +4,19 @@
   const _ = require('lodash')
 
   module.exports = {
-    url: 'https://www.youtube.com/feeds/videos.xml?user=EintrachtMedia',
-    name: 'youtube:ef',
+    url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCb-7rCWm12NFmRFer3QApig',
+    name: 'fussball2000',
     extract: function (data) {
       const stream = this; let item
       // add to data (collector)
       while ((item = stream.read())) {
-        // fix feed
+        // only latest one
+        if (data.length > 0) return
         item.description = _.isNull(item.description) ? '' : item.description
         data.push({
-          title: item.title,
+          title: item.title.replace(' | Bundesliga Reaktion', ''),
           content: item.description,
-          source: 'eintracht',
+          source: 'fussball2000',
           short: item.description.slice(0, 140),
           url: item.link
         })

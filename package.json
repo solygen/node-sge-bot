@@ -1,6 +1,6 @@
 {
   "name": "node-sge-bot",
-  "version": "1.3.0",
+  "version": "2.0.0-rc.1",
   "description": "eintracht frankfurt twitter news bot",
   "main": "bin/bot.js",
   "scripts": {
@@ -11,24 +11,25 @@
     "prepublish": "publish-please guard"
   },
   "dependencies": {
-    "bitly": "2.0.0",
-    "debug": "2.2.0",
+    "axios": "0.21.1",
+    "bitly": "7.1.2",
+    "cheerio": "1.0.0-rc.10",
+    "debug": "4.3.2",
     "deferred": "0.7",
-    "feedparser": "1.1.4",
-    "jsonfile": "2.3.1",
-    "lodash": "4.13",
-    "osmosis": "0.0.8",
-    "request": "2.72.0",
-    "twit": "2.2.4"
+    "dotenv": "10.0.0",
+    "feedparser": "2.2.10",
+    "jsonfile": "6.1.0",
+    "lodash": "4.17.21",
+    "request": "2.88.2",
+    "twit": "2.2.11"
   },
   "engines": {
-    "node": ">=4.4.0"
+    "node": ">=12.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/solygen/node-sge-bot.git"
   },
-  "preferGlobal": "true",
   "bin": {
     "bot": "bin/bot.js"
   },
@@ -45,6 +46,6 @@
   },
   "homepage": "https://github.com/solygen",
   "devDependencies": {
-    "publish-please": "2.1.4"
+    "publish-please": "5.5.2"
   }
 }
