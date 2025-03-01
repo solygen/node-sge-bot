@@ -2,16 +2,16 @@
   'use strict'
 
   module.exports = {
-    url: 'https://fussball.news/c/eintracht-frankfurt',
+    url: 'https://www.fussball.news/deutschland/eintracht-frankfurt/',
     name: 'fussballnews',
     selector: {
-      article: 'a.card--default',
-      title: '.card__title > span',
-      link: 'a.card--default|href',
-      subtitle: '.card__pre-title'
+      article: '.id-g  > .id-g4-c1',
+      title: '.id-Teaser-el-content-headline-text',
+      link: 'a.id-LinkOverlay-link|href',
+      subtitle: '.id-Teaser-el-content-kicker-text'
     },
     filter: function (article, index) {
-      if (index > 7) return false
+      if (index > 2) return false
       return true
     },
     map: function (article) {

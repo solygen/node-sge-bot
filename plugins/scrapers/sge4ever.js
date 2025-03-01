@@ -5,11 +5,9 @@
     url: 'https://www.sge4ever.de/',
     name: 'sge4ever',
     selector: {
-      article: '.td-big-grid-wrapper .td-big-grid-post',
-      title: '.td-module-title>a',
-      link: '.td-module-title>a|href',
-      author: '.td-post-author-name > a',
-      extra: '.td-post-category'
+      article: '.news-top-post-module__inner-container',
+      title: '.news-top-post-module__content--title>a',
+      link: '.news-top-post-module__content--title>a|href',
     },
     filter: function (article, index) {
       if (article.extra.indexOf('Frauen') > -1) return false

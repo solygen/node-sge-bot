@@ -29,7 +29,7 @@
     name: 'hr3ticker',
     selector: {
       article: '.js-timeline .c-tickerItem',
-      title: '.c-tickerItem__title',
+      title: 'h2',
       content: '.copytext__text',
       link: '.c-tickerItem__anchor|id',
       extra: '.c-posterTeaser a|href'
