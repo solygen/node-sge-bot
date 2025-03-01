@@ -45,8 +45,5 @@
   "bugs": {
     "url": "https://github.com/solygen/node-sge-bot/issues"
   },
-  "homepage": "https://github.com/solygen",
-  "devDependencies": {
-    "publish-please": "5.5.2"
-  }
+  "homepage": "https://github.com/solygen"
 }
